@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sanssucre.mario.Scenes.Hud;
 import com.sanssucre.mario.SuperMario;
 
 public class PlayScreen implements Screen {
@@ -17,13 +18,14 @@ public class PlayScreen implements Screen {
     private Texture texture;
     private OrthographicCamera gameCam;
     private Viewport gamePort;
+    private Hud hud;
     public PlayScreen(SuperMario game) {
         this.game = game;
-        this.texture = new Texture("badlogic.jpg");
         this.gameCam = new OrthographicCamera();
-        this.gamePort = new FitViewport(800, 480, gameCam);// viewport decides
+        this.gamePort = new FitViewport(SuperMario.V_WIDTH, SuperMario.V_HEIGHT, gameCam);// viewport decides
+        this.hud = new Hud(game.batch);
         // how the game looks like in different devices
-        //StretchViewport
+        //StretchViewport and ScreenViewport are also available
 
     }
     @Override
@@ -35,10 +37,11 @@ public class PlayScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        this.game.batch.setProjectionMatrix(gameCam.combined);
-        this.game.batch.begin();
-        this.game.batch.draw(texture, 0, 0);
-        this.game.batch.end();
+        this.game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        this.hud.stage.draw();
+       // this.game.batch.begin();
+       // this.game.batch.draw(texture, 0, 0);
+       // this.game.batch.end();
 
     }
 
