@@ -52,7 +52,7 @@ public class Hud {
         table.row();
         table.add(scoreLabel).expandX();
         table.add(levelLabel).expandX();
-        table.add(countdownLabel).expandX();
+        table.add(countdownLabel).expandX(); //https://www.spriters-resource.com/nes/supermariobros/sheet/52571/ for the tiles
 
         stage.addActor(table);
 
