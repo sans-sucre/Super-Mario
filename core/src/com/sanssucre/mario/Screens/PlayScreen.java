@@ -22,9 +22,11 @@ public class PlayScreen implements Screen {
     private OrthographicCamera gameCam;
     private Viewport gamePort;
     private Hud hud;
+    //Tiled map variables
     private TmxMapLoader mapLoader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
+
     public PlayScreen(SuperMario game) {
         this.game = game;
         this.gameCam = new OrthographicCamera();
