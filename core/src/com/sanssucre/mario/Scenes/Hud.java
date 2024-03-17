@@ -28,19 +28,26 @@ public class Hud {
     Label marioLabel;
 
     public Hud(SpriteBatch spriteBatch){
+        // initiate all the parameters
         worldTimer = 300;
         timeCount = 0;
         score = 0;
 
-        viewport = new FitViewport(SuperMario.V_WIDTH, SuperMario.V_HEIGHT, new OrthographicCamera());
+        // create a new viewport because we want these thing to remain on the same place all the
+        // time
+        viewport = new FitViewport(SuperMario.V_WIDTH, SuperMario.V_HEIGHT,
+                new OrthographicCamera());
         stage = new Stage(viewport, spriteBatch);
 
+        // to organize our labels
         Table table = new Table();
         table.top();
-        table.setFillParent(true);
+        table.setFillParent(true);// table is now the size of the stage
 
-        countdownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        scoreLabel =  new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        countdownLabel = new Label(String.format("%03d", worldTimer),
+                new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        scoreLabel =  new Label(String.format("%06d", score),
+                new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         timeLabel =  new Label("TIME", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         levelLabel = new Label("1-1", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         worldLabel =  new Label("WORLD", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
