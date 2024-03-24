@@ -46,6 +46,8 @@ public class PlayScreen implements Screen {
         this.hud = new Hud(game.batch);
         // how the game looks like in different devices
         //StretchViewport and ScreenViewport are also available
+
+        // to load the map
         this.mapLoader = new TmxMapLoader();
         this.map = mapLoader.load("My_super_mario.tmx");
         this.renderer = new OrthogonalTiledMapRenderer(map);
@@ -53,7 +55,7 @@ public class PlayScreen implements Screen {
 
         this.world = new World(new Vector2(0,0), true);
         this.b2dr = new Box2DDebugRenderer();
-
+/*
         BodyDef bdef = new BodyDef();
         PolygonShape shape = new PolygonShape();
         FixtureDef fdef = new FixtureDef();
@@ -90,7 +92,7 @@ public class PlayScreen implements Screen {
             fdef.shape = shape;
             body.createFixture(fdef);
         }
-
+*/
 
     }
     @Override
@@ -100,13 +102,18 @@ public class PlayScreen implements Screen {
 
 
     public void handleInput(float dt){
+        // when the screen is touched, so our camera can move
         if (Gdx.input.isTouched()){
             gameCam.position.x += 100*dt;
         }
     }
 
+    /*
+    * to update the game world
+    * */
     public void update(float dt){
         handleInput(dt);
+        // update the camera anytime we move
         gameCam.update();
         renderer.setView(gameCam);
     }
